@@ -3,7 +3,7 @@ pragma solidity ^0.7.0;
 
 /*
 /* Project : TMN Global Token */
-/* Description : ERC 20 Standard Token with Option to Freeze Amounts */
+/* Description : ERC 20 Standard Token with Option to Freeze & Release Tokens */
 /* Project Website : https://tmn-global.com */
 /* Author : TMN Global
  *
@@ -1035,8 +1035,8 @@ contract Token is ERC20 {
         _mint(msg.sender, 500000000 * (10**uint256(decimals())));
         _createdDate = block.timestamp;
         /* Dates needs to be updated with the new roadmap */
-        _startReleaseTime = 1616852443;
-        _finalReleaseTime = 1616938843;
+        _startReleaseTime = 1651281483;
+        _finalReleaseTime = 1672535883;
         _lastReleasedDate = 0;
         _lastReleasedBlockNumber = 0;
         _hashOfLastRelease = 0;
@@ -1084,7 +1084,7 @@ contract Token is ERC20 {
         if (
             _hashOfLastRelease == hashOfRelease ||
             _lastReleasedBlockNumber == 0 ||
-            block.timestamp >= _lastReleasedDate + 3 minutes
+            block.timestamp >= _lastReleasedDate + 4 weeks
         ) {
             uint256 amount = getFreezedAmount(target).div(100);
             require(amount > 0, "no tokens to release");
